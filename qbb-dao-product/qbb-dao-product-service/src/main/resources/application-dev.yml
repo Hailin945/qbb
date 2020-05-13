@@ -1,0 +1,31 @@
+# 程序启动时可以有更多的日志信息，开发时打开；生产可以关闭。
+debug: true
+
+server:
+  port: 10000
+
+spring:
+  application:
+    # 当前应用程序名称
+    name: qbb-dao-product-service
+  datasource:
+    # 使用阿里的druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # springboot2.x使用的日志框架是log4j2。这里如果将log4j2换成log4j会报错：java.lang.ClassNotFoundException: org.apache.log4j.Logger
+    filters: stat,wall,log4j2
+    logSlowSql: true
